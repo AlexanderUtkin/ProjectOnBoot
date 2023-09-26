@@ -11,7 +11,6 @@ import java.util.List;
 
 
 @Repository
-@Transactional
 public class UserDaoImpl implements UserDao {
 
 
@@ -42,7 +41,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void deleteUser(Long id) {
-        User deletingUser = em.find(User.class,id);
-        em.remove(deletingUser);
+        //User deletingUser = em.find(User.class,id);
+        em.remove(em.find(User.class,id));
     }
 }
