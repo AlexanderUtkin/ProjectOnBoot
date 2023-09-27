@@ -37,11 +37,14 @@ public class UserDaoImpl implements UserDao {
     public void updateUser(User user) {
         em.merge(user);
     }
-//
+
 
     @Override
     public void deleteUser(Long id) {
-        //User deletingUser = em.find(User.class,id);
-        em.remove(em.find(User.class,id));
+
+        em.createQuery("DELETE FROM User u WHERE u.id = :id")
+                .setParameter("id", id)
+                .executeUpdate();
     }
+
 }
